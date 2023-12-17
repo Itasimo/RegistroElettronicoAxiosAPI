@@ -1,5 +1,3 @@
-var itemCounter = require('../utils/StringSort.js')
-var taglia = require('../utils/taglia.js')
 
 /**
  * 

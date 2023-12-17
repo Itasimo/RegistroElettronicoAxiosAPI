@@ -1,4 +1,3 @@
-var itemCounter = require('../utils/StringSort.js')
 
 /**
  * 
