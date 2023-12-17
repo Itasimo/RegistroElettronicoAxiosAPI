@@ -10,33 +10,17 @@ var taglia = require('../utils/taglia.js')
  * 
  */
 
-module.exports = async function parseCompiti(rawData) {
-                        var result = '{'
-                        var sub = 0
-
-                        for (let i = 0; i < itemCounter(rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄'), '/tr'); i++) {
-                            
-                             /**
-                             * La formula per trovare gli elementi è:
-                             * 
-                             * p + i * s
-                             * 
-                             * i = index
-                             * p = prima volta in cui si trova l'elemento nella lista
-                             * s = sequenza, in questo caso dopo 26 elementi si ritovava lo stesso tipo di elemento
-                             * 
-                             */
-                            
-                            if (rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄')[i*26+12].replaceAll('"', "'") !== '') {
-                                result = result + ',"'+ (i - sub) +'": {"Materia": "' + rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄')[i*26+8].replaceAll('"', "'").replace(/(?:\r\n|\r|\n)/g, '\\n ') + '", "Data": "' + rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄')[i*26+4] + '", "Compito": "' + rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄')[i*26+12].replaceAll('"', "'").replace(/(?:\r\n|\r|\n)/g, '\\n ') + '", "Prof": "' + rawData.replaceAll('>', '˄').replaceAll('<', '˄').split('˄')[i*26+20].replaceAll('"', "'").replace(/(?:\r\n|\r|\n)/g, '\\n ') + '"}'  
-                            } else {
-                                sub++
-                            }
-                            
-                        }
-                    
-                        result = taglia(result, 2) + '}'
-                    
-                    
-                        return JSON.parse(result)
+module.exports = function parseCompiti(rawData) {
+    var result = '{'
+    var sub = 0
+    rawData = JSON.parse(rawData);
+    for (let i = 0; i < Object.keys(rawData.data).length; i++) {
+        if (rawData.data[i].testo !== '') {
+            result = result + '"' + (i - sub) +'": {"Materia": "' + rawData.data[i].materia  + '", "Data": "' + rawData.data[i].giorno + '", "Compito": "' + rawData.data[i].testo.replace(/(?:\r\n|\r|\n)/g, '\\n ') + '", "Prof": "'+ rawData.data[i].inserito.split('<br>')[0] + '"},'
+        } else {
+            sub++
+        }
+    }
+    result = result.slice(0, -1) + '}'
+    return JSON.parse(result)
 }
