@@ -9,7 +9,15 @@ const modules = {
 
 let SessionId
 
-
+/**
+ * 
+ * Codice generato da Postman (https://www.postman.com/)
+ * 
+ * @param {String} Action Azione da eseguire
+ * @param {String} Cookies Cookies contenti SessionID e altri eventuali dati
+ * @param {String} body Corpo della chiamata contenente informazioni sul formato della risposta
+ * @returns JSON non analizzato contenete la risposta
+ */
 
 async function AxiosAPI(Action, Cookies, body) {
     var raw_JSON
@@ -33,7 +41,7 @@ async function AxiosAPI(Action, Cookies, body) {
       redirect: 'follow'
     };
 
-    await fetch("https://registrofamiglie.axioscloud.it/Pages/APP/APP_Ajax_Get.aspx?Action=" + Action, requestOptions)
+    await fetch("https://registrofamiglie.axioscloud.it/Pages/APP/APP_Ajax_Get.aspx?Action=" + Action, requestOptions) //Endpoint
       .then(response => response.text())
       .then(result => raw_JSON  = result)
       .catch(error => console.log('error', error));
@@ -41,7 +49,17 @@ async function AxiosAPI(Action, Cookies, body) {
     return raw_JSON
 }
 
-
+/**
+ * 
+ * @param {String} CodiceFiscale Codice Fiscale della Scuola
+ * @param {String} CodiceUtente Codice dell' Utente
+ * @param {String} Password Password dell'utente
+ * @param {String} Azione Azione che si vuole effettuare:
+ *                          - **"Compiti"**: contiene tutti i compiti pubblicati fino al momento della chiamata e informazioni riguardanti: materia, data di consegna, compito, professore;
+ *                          - **"Verifiche"**: contiene tutte le verifiche pubblicate fino al momento della chiamata e informazioni riguardanti: materia, data della verifica, argomenti della verifica, professore;
+ *                          - **"Voti"**: contiene tutti i voti pubblicati fino al momento della chiamata e informazioni riguardanti: materia, tipo di voto, voto, data, eventuali commenti, professore;
+ * @returns JSON contenete la risposta
+ */
 
 module.exports = async function RegistroElettronicoAxiosAPI(CodiceFiscale, CodiceUtente, Password, Azione) {
 
@@ -50,7 +68,7 @@ module.exports = async function RegistroElettronicoAxiosAPI(CodiceFiscale, Codic
     const Compiti = {
         Action: 'FAMILY_REGISTRO_CLASSE_COMPITI_LISTA',
         Cookies: "ASP.NET_SessionId="+ SessionId + "; Path=/; Secure; HttpOnly;",
-        body: "{\"draw\":1,\"columns\":{},\"order\":[],\"start\":0,\"length\":-1,\"search\":{\"value\":\"\",\"regex\":false},\"iMatId\":\"\"}"
+        body: "{\"draw\":1,\"columns\":{},\"order\":[],\"start\":0,\"length\":-1,\"search\":{\"value\":\"\",\"regex\":false},\"iMatId\":\"\"}" // "length": -1 restituisce tutti i dati
     }
     const Verifiche = {
         Action: 'FAMILY_REGISTRO_CLASSE_COMPITI_LISTA',

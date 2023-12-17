@@ -28,6 +28,7 @@ L' API risponde con un JSON contenete le informazioni
 | **Azione**        | Password dell' utente       |          ❌          |
 
 - **Voti**:
+
   - La risposta contiene tutti i voti pubblicati fino al momento della chiamata;
   - Risponde con informazioni riguardanti:
     - Materia
@@ -36,7 +37,10 @@ L' API risponde con un JSON contenete le informazioni
     - Data
     - Eventuali commenti
     - Professore
+
+
 - **Compiti**:
+
   - La risposta contiene tutti i compiti pubblicati fino al momento della chiamata;
   - Risponde con informazioni riguardanti:
     - Materia
@@ -44,8 +48,17 @@ L' API risponde con un JSON contenete le informazioni
     - Compito
     - Professore
 
-## Aggiornamenti
 
+- **Verifiche**:
+
+  - La risposta contiene tutte le verifiche pubblicate fino al momento della chiamata;
+  - Risponde con informazioni riguardanti:
+    - Materia
+    - Data della verifica
+    - Argomenti della verifica
+    - Professore
+    
+## Aggiornamenti
 - **23/11/23**: Upload dei file del progetto (Tutto in Puppeteer)
 - **17/11/23**: Implementazione dell'API del registo (Ancora dipendente da Puppeteer per ricavare l'ID della sessione)
 

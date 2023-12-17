@@ -1,9 +1,8 @@
-
 /**
  * 
  * 
  * 
- * @param {String} rawData - HTML preso dalla tabella dei voti
+ * @param {String} rawData - JSON preso dalla chiamata all'API di Axios
  * @returns JSON contente tutti i voti e altre informzioni riguardanti essi
  * 
  */

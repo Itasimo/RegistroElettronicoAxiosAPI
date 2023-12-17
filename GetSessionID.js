@@ -10,7 +10,9 @@ function delay(time) {
     });
   }
 
-
+/**
+ * Entra sul sito
+ */
 
 async function Inizializza() {
     browser = await puppeteer.launch({headless : true});
@@ -18,6 +20,14 @@ async function Inizializza() {
     await page.goto('https://scuoladigitale.axioscloud.it/Pages/SD/SD_Login.aspx');
     await page.setViewport({width: 1080, height: 1024});
 }
+
+/**
+ * Fai il login con le credenziali fornite
+ * @param {String} CF Codice Fiscale della Scuola
+ * @param {String} CU Codice Utente
+ * @param {String} Pwd Password dell'utente
+ */
+
 async function LoginRegistro(CF, CU, Pwd) {
     await Inizializza()
     await page.type('#customerid', CF);
@@ -28,6 +38,9 @@ async function LoginRegistro(CF, CU, Pwd) {
     await browser.close()
 }
 
+/**
+ * Entra nella sezione "Registro Famiglie" e prendi dai Cookies il SessionID
+ */
 async function SezioneRegistroFamiglie() {
     try {
         await page.waitForSelector('div.bg-registrofamiglie')
@@ -41,7 +54,13 @@ async function SezioneRegistroFamiglie() {
     SessionId = await page.cookies();
 }
 
-
+/**
+ * 
+ * @param {String} CF Codice Fiscale della Scuola
+ * @param {String} CU Codice Utente
+ * @param {String} PWD Password dell'utente
+ * @returns SessionID necessario per le chiamate all'API di Axios
+ */
 
 module.exports = async function GetSessionID(CF, CU, PWD) {
     await LoginRegistro(CF, CU, PWD)

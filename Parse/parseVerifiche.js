@@ -1,14 +1,11 @@
-
 /**
  * 
  * 
  * 
- * @param {String} rawData - HTML preso dalla tabella dei compiti e verifiche
+ * @param {String} rawData - JSON preso dalla chiamata all'API di Axios
  * @returns JSON contente tutte le verifiche e altre informzioni riguardanti essi
  * 
  */
-
-//{"Materia":"MATEMATICA","Data":"12/01/2024","Verifica":" Verifica di matematica: radicali","Prof":"Dacco' Antonella"}
 
 module.exports = function parseCompiti(rawData) {
     var result = '{'
