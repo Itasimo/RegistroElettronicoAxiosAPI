@@ -361,6 +361,9 @@ All'interno del parametro `JsonRequest` ci dovrà essere un json criptato conten
 ```
 Il parametro `scelta` sarà la posizione nell'array dell'opzione che si vuole selezionare.
 
+Per segnare una circolare letta JsonRequest sarà:
+{"sCodiceFiscale":"80127350157","sSessionGuid":"641a35d1-654b-4e3d-a6b4-58648c53f2a8","sCommandJSON":{"sApplication":"FAM","sService":"APP_PROCESS_QUEUE","sModule":"COMUNICAZIONI_READ","data":{"comunicazioneId":"297999","alunnoId":"5392160"}},"sVendorToken":"5ed95c58-fbc2-4db8-92cb-7e1e73ba2065"}
+
 ### Curriculum
 ```json
 [
